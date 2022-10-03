@@ -499,9 +499,6 @@ BIBLIOTECA Escribir una función nroVacías que describa la cantidad de celdas v
 Estructurar el código como recorrido por las celdas del tablero.
 */
 
-program {
-    return(nroVacías())
-}
 
 function nroVacías() {
     /*
@@ -569,6 +566,99 @@ function esCeldaVacía() {
   */
   return (not hayBolitas(Rojo) && not hayBolitas(Negro) && not hayBolitas(Azul) && not hayBolitas(Verde))
 }
+
+procedure  IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:        -Posiciona el cabezal en la siguiente celda del recorrido con **dirPrincipal** y **dirPrincipal**
+    PRECONDICIONES:   -La **dirPrincipal** no puede ser igual u opuesta a la **dirSecundaria**.
+    PARÁMETROS:
+      * dirPrincipal: -Dirección.-Indíca la primera dirección del recorrido.
+      * dirSecundaria:-Dirección.-Indíca la segunda dirección del recorrido.
+  */
+  //Va al opuesto de la direccion principal.
+  if(puedeMover(dirPrincipal)) {
+    Mover(dirPrincipal)
+  }else {
+    IrAlBorde(opuesto(dirPrincipal))
+    Mover(dirSecundaria)
+  }
+}
+
+/*
+22.Contando celdas con bolitas.
+BIBLIOTECA Escribir la función cantidadDeCeldasConBolitasDeColor_ que describe la cantidad
+de celdas que contienen al menos una bolita del color dado.
+*/
+
+function cantidadDeCeldasConBolitasDeColor_(color) {
+    /*
+    Propósito:          -Describe la cantidad de celdas que contienen bolitas de color **color**.
+    Precondición:       -Ninguna.
+    Parámetros:         
+        **color**:      -Color. Describe el color de las bolitas a contar.
+    Tipo:               -Número.
+    */    
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    contadorDeVacías:=0
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)) {
+        contadorDeVacías:=contadorDeVacías+unoSiHayDe_CeroSino(color)
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    contadorDeVacías:=contadorDeVacías+unoSiHayDe_CeroSino(color)
+    return(contadorDeVacías)
+}
+
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:          -Posiciona el cabezal en el inicio del recorrido en dirección **dirPrincipal** y **dirSecundaria**. 
+    PARÁMETROS:         
+      * dirPrincipal:   -Dirección. Indíca la primer dirección que debe tomar el cabezal para ubicarse en la primera celda del recorrido.
+      * dirSecundaria:  -Dirección. Indíca la segunda dirección que debe tomar el cabezal para ubicarse en la primera celda del recorrido.
+    PRECONDICIONES:     -La direcciónes **dirPrincipal** y **dirSecundaria** no pueden ser iguales ni opuestas.
+      * 
+  */
+  IrAlBorde(opuesto(dirPrincipal))
+  IrAlBorde(opuesto(dirSecundaria))
+}
+
+function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:            -Indíca si existe la siguiente celda en un recorrido hacia la **dirPrincipal** y la **dirSecundaria**.
+    PARÁMETROS:     
+      * dirPrincipal:     -Dirección. Indíca la primera dirección del recorrido. 
+      * dirSecundaria:    -Dirección. Indíca la segunda dirección del recorrido.
+    PRECONDICIONES:       -Ninguna.
+      * 
+    Tipo:                 -Booleano.Retorna verdadeor en el caso de que exista una siguiente celda en el recorrido, en caso contrario retorna falso.
+  */
+  return(puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+}
+
+function unoSiHayDe_CeroSino(color) {
+    /*
+    Propósito:          -Describe uno si hay una celda con bolitas.
+    Precondición:       -Ninguna.
+    Parámetros:         
+        **color**:      -Color. Describe cuál es el color de la bolita.
+    Tipo:               -Número.
+    */
+    return(
+        choose
+            1 when ( hayBolitas(color))
+            0 otherwise
+        )
+}
+
+function esCeldaConBolitas() {
+  /*
+    PROPÓSITO:      -Indíca si hay al menos una bolita de cualquier color en la celda actual.
+    PRECONDICIONES: -Ninguna.
+    TIPO:           -Booleano. Retorna verdadero en el caso de que haya al menos una bolita de cualquier color en la celda actual, en caso contrario retorna falso.
+      * 
+  */
+  return (hayBolitas(Rojo)|| hayBolitas(Verde)|| hayBolitas(Azul)|| hayBolitas(Negro))
+}
+
 
 procedure  IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
   /*
