@@ -1,0 +1,86 @@
+/*
+23.Contando bolitas de un color
+BIBLIOTECA Escribir una función nroBolitasTotalDeColor_ que describa la cantidad de bolitas del color
+dado que hay en total en todo el tablero. Estructurar el código como recorrido por las celdas del
+tablero.
+*/
+
+program {
+    return(nroBolitasTotalDeColor_(Rojo))
+}
+
+function nroBolitasTotalDeColor_(color) {
+    /*
+    Propósito:      -Describe la cantidad total de bolitas del color **color** en el tablero.
+    Precondición:   -Ninguna.
+    Parámetros:
+        **color**:  -Color. Describe el color de las bolitas a contar. 
+    Tipo:           -Número.
+    */
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    cantidadDeBolitas:=nroBolitas(color)
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)) {
+        cantidadDeBolitas:=cantidadDeBolitas+nroBolitas(color)
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    cantidadDeBolitas:=cantidadDeBolitas+nroBolitas(color)
+    return(cantidadDeBolitas)
+}
+
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:          -Posiciona el cabezal en el inicio del recorrido en dirección **dirPrincipal** y **dirSecundaria**. 
+    PARÁMETROS:         
+      * dirPrincipal:   -Dirección. Indíca la primer dirección que debe tomar el cabezal para ubicarse en la primera celda del recorrido.
+      * dirSecundaria:  -Dirección. Indíca la segunda dirección que debe tomar el cabezal para ubicarse en la primera celda del recorrido.
+    PRECONDICIONES:     -La direcciónes **dirPrincipal** y **dirSecundaria** no pueden ser iguales ni opuestas.
+      * 
+  */
+  IrAlBorde(opuesto(dirPrincipal))
+  IrAlBorde(opuesto(dirSecundaria))
+}
+
+function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:            -Indíca si existe la siguiente celda en un recorrido hacia la **dirPrincipal** y la **dirSecundaria**.
+    PARÁMETROS:     
+      * dirPrincipal:     -Dirección. Indíca la primera dirección del recorrido. 
+      * dirSecundaria:    -Dirección. Indíca la segunda dirección del recorrido.
+    PRECONDICIONES:       -Ninguna.
+      * 
+    Tipo:                 -Booleano.Retorna verdadeor en el caso de que exista una siguiente celda en el recorrido, en caso contrario retorna falso.
+  */
+  return(puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+}
+
+function unoSiHayDe_CeroSino(color) {
+    /*
+    Propósito:          -Describe uno si hay una celda con bolitas.
+    Precondición:       -Ninguna.
+    Parámetros:         
+        **color**:      -Color. Describe cuál es el color de la bolita.
+    Tipo:               -Número.
+    */
+    return(
+        choose
+            1 when ( hayBolitas(color))
+            0 otherwise
+        )
+}
+
+procedure  IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:        -Posiciona el cabezal en la siguiente celda del recorrido con **dirPrincipal** y **dirPrincipal**
+    PRECONDICIONES:   -La **dirPrincipal** no puede ser igual u opuesta a la **dirSecundaria**.
+    PARÁMETROS:
+      * dirPrincipal: -Dirección.-Indíca la primera dirección del recorrido.
+      * dirSecundaria:-Dirección.-Indíca la segunda dirección del recorrido.
+  */
+  //Va al opuesto de la direccion principal.
+  if(puedeMover(dirPrincipal)) {
+    Mover(dirPrincipal)
+  }else {
+    IrAlBorde(opuesto(dirPrincipal))
+    Mover(dirSecundaria)
+  }
+}
