@@ -1,0 +1,82 @@
+/*
+8. Copiamos una celda
+Escribir el procedimiento CopiarCeldaAl_, que copia los contenidos de la celda actual a la celda
+lindante en la dirección dada. Note que se deben eliminar los contenidos originales que hubieran en la
+celda de destino
+*/
+
+program {
+    CopiarCeldaAl_(Norte)
+}
+
+procedure CopiarCeldaAl_(dirección) {
+    /*
+    Propósito:          -Copia los contenidos de la celda actual a la celda lindante en la dirección dada.
+    Precondición:       -Debe existir la celda lindante en la dirección **dirección**.
+    */
+    
+    unColor=minColor()
+    while(unColor/=maxColor) {
+        unColor:=siguiente(unColor)
+    }
+    
+        
+    nroRojas     :=nroBolitas(Rojo)
+    nroVerdes    :=nroBolitas(Verde)
+    nroAzules    :=nroBolitas(Azul)
+    nroNegras    :=nroBolitas(Negro)
+    Mover(dirección)
+    EliminarOriginales()
+    Poner_DeColor_(nroRojas,  Rojo)
+    Poner_DeColor_(nroVerdes, Verde)
+    Poner_DeColor_(nroAzules, Azul)
+    Poner_DeColor_(nroNegras, Negro)
+}
+
+procedure EliminarOriginales() {
+    /*
+    Propósito:      -Elimina el contenido de la celda actual.
+    Precondición:   -Ninguna.
+    */
+    SacarTodasLasDeColor_(Rojo)
+    SacarTodasLasDeColor_(Verde)
+    SacarTodasLasDeColor_(Negro)
+    SacarTodasLasDeColor_(Azul)
+    
+}
+
+//Biblioteca
+procedure SacarTodasLasDeColor_(colorASacar) {
+  /*
+  PROPÓSITO:    -Saca todas las bolitas de **colorASacar** de la celda actual.
+  PRECONDICIÓN: -Ninguna.
+  PARÁMETROS:
+    **colorASacar**: Color. Indíca el color de la bolitas a sacar.
+  */
+  Sacar__Veces(colorASacar, nroBolitas(colorASacar))
+}
+
+procedure Sacar__Veces(colorASacar, cantidadBolitasASacar) {
+  /*
+  PROPÓSITO:    -Saca **cantidadBolitasASacar** de **colorASacar** de la celda actual.
+  PRECONDICIÓN: -Debe/n existir al menos **cantidadBolitasASacar** de **colorASacar** en la celda actual.
+  PARÁMETROS:
+    **colorASacar**:    -Color. Indíca el color de la bolita a sacar.
+    **cantidadASacar**: -Número.Indíca la cantidad de bolitas a sacar.
+  */
+  repeat(cantidadBolitasASacar) {
+    Sacar(colorASacar)
+  }
+}
+
+procedure Poner_DeColor_(cantidadAPoner, colorAPoner) {
+  /*
+  PROPOSITO:    -Poner **cantidadAPoner** de color **colorAPoner** en la celda actual.
+  PRECONDICION: -Ninguna.
+  PARAMETROS:   -**cantidadAPoner**: Numero.Indíca la cantidad de bolitas a poner.
+                -**colorAPoner**:    Color. Indíca el color de la/s bolita/s a poner.
+  */
+  repeat(cantidadAPoner) {
+    Poner(colorAPoner)
+  }
+}

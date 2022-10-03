@@ -1,0 +1,25 @@
+/*
+4. Mirando en la fila o columna
+Escribir la función hayBolitas_Hacia_ que indica si en alguna de las celdas hacia la dirección dada
+(sin incluir la celda actual) hay bolitas del color dado.
+*/
+
+program {
+    return(hayBolitas_Hacia_(Rojo,Norte))
+}
+
+function hayBolitas_Hacia_(color,dirección) {
+    /*
+    Propósito:          -Indíca si hay bolitas de color **color** hacia la dirección dada.  
+    Precondición:       -Deben existir al menos una bolita de color **color** en la dirección dada.
+                        -La celda actual debe estar vacia.
+    Parámetros:
+        **color**:      -Color.     -Describe el color de las bolitas.
+        **dirección**:  -Dirección. -Describe la dirección de la celda en la que se mueve el cabezal.
+    Tipo:               -Booleano.
+    */
+    while(not hayBolitas(color)) {
+        Mover(dirección)
+    }
+    return(hayBolitas(color))
+}

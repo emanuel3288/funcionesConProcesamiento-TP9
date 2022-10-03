@@ -1,0 +1,592 @@
+program {
+
+  //Poner_DeColor_(10, Azul)
+    
+}
+
+procedure PonerUnaDeCada() {
+    /*
+    PROPOSITO:    -Poner una bolita de cada color en la celda actual. 
+    PRECONDICION: -No hay.
+    */
+    Poner(Rojo)
+    Poner(Negro)
+    Poner(Azul)
+    Poner(Verde)
+
+}
+
+/*Tp4 -9
+ Poner de a muchas
+  BIBLIOTECA Escribir un procedimiento Poner_DeColor_(cantidadAPoner, colorAPoner) que
+  dado un número cantidadAPoner y un color colorAPoner, ponga tantas bolitas como se indica del
+  color dado de la celda actual.
+  */
+procedure Poner_DeColor_(cantidadAPoner, colorAPoner) {
+  /*
+  PROPOSITO:    -Poner **cantidadAPoner** de color **colorAPoner** en la celda actual.
+  PRECONDICION: -Ninguna.
+  PARAMETROS:   -**cantidadAPoner**: Numero.Indíca la cantidad de bolitas a poner.
+                -**colorAPoner**:    Color. Indíca el color de la/s bolita/s a poner.
+  */
+  repeat(cantidadAPoner) {
+    Poner(colorAPoner)
+  }
+}
+
+//Tp4 -10
+procedure Mover_VecesAl_(cantidadAMover, direcciónAMover) {
+  /*
+  PROPOSITO:    -Posiciona el cabezal **cantidadAMover** celdas en la dirección **direcciónAMover**.
+  PRECONDICION: -Deben existir al menos **cantidadAMover** celdas al **direcciónAMover** de la celda actual.
+  PARAMETROS:   -**cantidadAMover**:   -Numero.   Indíca la cantidad de veces que se va a mover el cabezal.
+                -**direcciónAMover**:  -Dirección.Indíca la dirección en la que el cabezal se deberá mover.
+  */
+  repeat(cantidadAMover) {
+    Mover(direcciónAMover)
+  }
+}
+
+//Tp4 -11
+
+procedure Sacar_DeColor_(cantidadASacar, colorASacar) {
+  /*
+  PROPOSITO:     -Saca **cantidadASacar** bolitas de color **colorASacar** de la celda actual.
+  PRECONDICION:  -Debe existir al menos **cantidadASacar** bolita/s de color **colorASacar**.
+  PARAMETROS:    -**cantidadASacar**: -Numero.Indíca el cantidad de bolitas a sacar de la celda actual.
+                 -**colorASacar**:    -Color. Indíca el color de la bolita a sacar de la celda actual.
+  OBSERVACIONES: La cantidad a sacar debe ser mayor a 0.
+  */
+  repeat(cantidadASacar) {
+    Sacar(colorASacar)
+  }
+}
+
+
+
+//TP5 -6. Sacando todas las de un color
+/*que quite de la celda actual todas las bolitas del color indicado por el parámetro.*/
+procedure SacarTodasLasDeColor_(colorASacar) {
+  /*
+  PROPÓSITO:    -Saca todas las bolitas de **colorASacar** de la celda actual.
+  PRECONDICIÓN: -Deben existir al menos una bolita del **colorASacar** en la celda actual.
+  PARÁMETROS:
+    **colorASacar**: Color. Indíca el color de la bolitas a sacar.
+  */
+  Sacar_DeColor_(nroBolitas(colorASacar), colorASacar)
+}
+
+// TP 5 -7. ¿Y si vaciamos la celda?
+procedure VaciarCelda() {
+  /*
+  PROPOSITO:    -Saca todas las bolitas de todos los colores de la celda actual.
+  PRECONDICION: -Debe existir al menos un bolita de color en la celda actual.
+  */
+    SacarTodasLasDeColor_(Rojo)
+    SacarTodasLasDeColor_(Verde)
+    SacarTodasLasDeColor_(Azul)
+    SacarTodasLasDeColor_(Negro)
+}
+
+// Entrega del presente
+procedure Sacar__Veces(colorASacar, cantidadBolitasASacar) {
+  /*
+  PROPÓSITO:    -Saca **cantidadBolitasASacar** de **colorASacar** de la celda actual.
+  PRECONDICIÓN: -Debe/n existir al menos **cantidadBolitasASacar** de **colorASacar** en la celda actual.
+  PARÁMETROS:
+    **colorASacar**:    -Color. Indíca el color de la bolita a sacar.
+    **cantidadASacar**: -Número.Indíca la cantidad de bolitas a sacar.
+  */
+  repeat(cantidadBolitasASacar) {
+    Sacar(colorASacar)
+  }
+}
+
+procedure MoverEnDiagonalAl_Y_(primeraDireccionAMover,segundaDireccionAMover) {
+    /*
+    PROPÓSITO:      -Posiciona el cabezal en diagonal hacia **primeraDireccionAMover** y **segundaDireccionAMover**. 
+    PRECONDICIÓN:   -Deben existir al menos algunas celdas hacia la **primeraDireccionAMover** y hacia la **segundaDireccionAMover**. 
+    PARAMETROS:
+        **primeraDireccionAMover**: Dirección. Indíca la primera dirección de la diagonal.
+        **segundaDireccionAMover**: Dirección. Indíca la segunda dirección de la diagonal.
+    */
+    Mover(primeraDireccionAMover)
+    Mover(segundaDireccionAMover)
+}
+
+// Ejercicio 4 TP6
+//A
+procedure Poner_Si_(color, condición){
+  /*
+    PROPÓSITO:      -Pone una bolita de **color** en la celda actual si se cumple la condición.
+    PARÁMETROS:
+      * color:      -Color. Indíca el color a poner en la celda actual.
+      * condición:  -Booleano. Indíca la condición necesaria que se debe cumplir para poner una bolita en la celda actual.
+    PRECONDICIONES: -Ninguna.
+      * 
+  */
+  if (condición) {
+    Poner(color)
+  } 
+}
+
+procedure Sacar_Si_(color, condición) {
+  /*
+    PROPÓSITO:      -Saca una bolita de **color** de la celda actual si se cumple la **condición**.
+    PARÁMETROS:     
+      * color:      -Color.   Indíca el color de la bolita a sacar de la celda actual.
+      * condición:  -Booleano.Indíca la condición necesaria que se debe cumplir para sacar una bolita de la celda actual.
+    PRECONDICIONES: -Debe/n existir al menos una bolita a sacar de **color** si se cumple la **condición**.
+      * 
+  */
+  if(condición) {
+    Sacar(color)
+  }
+}
+
+procedure Mover_Si_(dirección, condición) {
+  /*
+    PROPÓSITO:      -Posiciona el cabezal en la celda lindante en la **dirección** si se cumple la **condición**. 
+    PARÁMETROS:
+      * dirección:  -Dirección. -Indíca la dirección en la que mueve el cabezal.
+      * condición:  -Booleano.  -Indíca la condición necesaria que se debe cumplir para que el cabezal se mueva.
+    PRECONDICIONES: -Debe existir al menos una celda lindante en esa **dirección** si se cumple la **condición**.
+      * 
+  */
+  if (condition) {
+    Mover(dirección)
+  }  
+}
+
+// TP7 ---------
+/*2. Algunas funciones útiles
+BIBLIOTECA Escribir las siguientes funciones, para agregarlas a la biblioteca.
+a. esCeldaVacía(), que indica si la celda actual se encuentra vacía.
+b. hayAlMenosUnaDeCada(), que indica si en la celda actual hay al menos una bolita de cada
+color.
+c. esCeldaConBolitas(), que indica si la celda actual tiene al menos una bolita, de cualquier
+color.*/
+
+function esCeldaVacía() {
+  /*
+    PROPÓSITO:      -Indíca si la celda actual está vacía.  
+    PRECONDICIONES: -Ninguna.
+    TIPO:           -Booleano. Retorna verdadero si la celda actual está vacía, en caso contrario retorna falso.
+      * 
+  */
+  return (not hayBolitas(Rojo) && not hayBolitas(Negro) && not hayBolitas(Azul) && not hayBolitas(Verde))
+}
+
+function hayAlMenosUnaDeCada() {
+  /*
+    PROPÓSITO:      -Indíca si hay al menos una bolita de cada color en la celda actual.
+    PRECONDICIONES: -Ningúna.
+    TIPO:           -Booleano. Retorna verdadero en el caso de que haya al menos una bolita de cada color en la celda actual, en caso contrario retorna falso.
+      * 
+  */ 
+  return (hayBolitas(Rojo) && hayBolitas(Verde) && hayBolitas(Azul) && hayBolitas(Negro))
+}
+
+function esCeldaConBolitas() {
+  /*
+    PROPÓSITO:      -Indíca si hay al menos una bolita de cualquier color en la celda actual.
+    PRECONDICIONES: -Ninguna.
+    TIPO:           -Booleano. Retorna verdadero en el caso de que haya al menos una bolita de cualquier color en la celda actual, en caso contrario retorna falso.
+      * 
+  */
+  return (hayBolitas(Rojo)|| hayBolitas(Verde)|| hayBolitas(Azul)|| hayBolitas(Negro))
+}
+
+// Ejercicio 1 tp /
+procedure IrAlBorde_(dirección) {
+    /*
+    Propósito:      -Posiciona el cabezal en el borde del tablero en la **dirección**.
+    Precondición:   -Ninguna.
+    Parámetros:
+        **dirección**: Dirección. Indíca hacia que borde se debe mover el cabezal.
+    Observación: Si el cabezal se encuentra en el borde de la dirección ingresada, la posición no se modificará.
+    */
+    while(puedeMover(dirección)) {
+        Mover(dirección)
+    }
+}
+
+/*    TP8
+6. Las subtareas más útiles de la historia
+BIBLIOTECA Escribir los procedimientos y funciones necesarias para generalizar la noción de recorrido
+por celdas de un tablero, para que las direcciones de recorrido no estén fijas. En particular, definir
+(como siempre, comenzando por los contratos):
+a. IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria)
+b. haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria)
+c. IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria)
+Que hacen precisamente lo que sugiere su nombre, permitiendo utilizarlas en un recorrido por celdas.
+Puede probarlas intentando colocar una bolita en cada celda del tablero, o volviendo a implementar el
+ejercicio anterior, ahora de forma parametrizada. Al escribir las precondiciones, tener en cuenta que las
+direcciones no pueden ser cualesquiera, sino que deben estar relacionadas. ¿Cuál es esa relación?
+¿Cómo expresarla?
+*/
+
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:          -Posiciona el cabezal en el inicio del recorrido en dirección **dirPrincipal** y **dirSecundaria**. 
+    PARÁMETROS:         
+      * dirPrincipal:   -Dirección. Indíca la primer dirección que debe tomar el cabezal para ubicarse en la primera celda del recorrido.
+      * dirSecundaria:  -Dirección. Indíca la segunda dirección que debe tomar el cabezal para ubicarse en la primera celda del recorrido.
+    PRECONDICIONES:     -La direcciónes **dirPrincipal** y **dirSecundaria** no pueden ser iguales ni opuestas.
+      * 
+  */
+  IrAlBorde(opuesto(dirPrincipal))
+  IrAlBorde(opuesto(dirSecundaria))
+}
+
+function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:            -Indíca si existe la siguiente celda en un recorrido hacia la **dirPrincipal** y la **dirSecundaria**.
+    PARÁMETROS:     
+      * dirPrincipal:     -Dirección. Indíca la primera dirección del recorrido. 
+      * dirSecundaria:    -Dirección. Indíca la segunda dirección del recorrido.
+    PRECONDICIONES:       -Ninguna.
+      * 
+    Tipo:                 -Booleano.Retorna verdadeor en el caso de que exista una siguiente celda en el recorrido, en caso contrario retorna falso.
+  */
+  return(puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+}
+
+procedure  IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:        -Posiciona el cabezal en la siguiente celda del recorrido con **dirPrincipal** y **dirPrincipal**
+    PRECONDICIONES:   -La **dirPrincipal** no puede ser igual u opuesta a la **dirSecundaria**.
+    PARÁMETROS:
+      * dirPrincipal: -Dirección.-Indíca la primera dirección del recorrido.
+      * dirSecundaria:-Dirección.-Indíca la segunda dirección del recorrido.
+  */
+  //Va al opuesto de la direccion principal.
+  if(puedeMover(dirPrincipal)) {
+    Mover(dirPrincipal)
+  }else {
+    IrAlBorde(opuesto(dirPrincipal))
+    Mover(dirSecundaria)
+  }
+}
+
+//TP9
+/*
+2. Mirando la celda vecina, incluso si no hay vecina
+BIBLIOTECA Escribir la función hayBolitas_Al_, que indica si hay una celda lindante en la dirección
+indicada y la misma tiene bolitas del color dado. Sí no hay celda lindante describe Falso.
+*/
+function hayBolitas_EnCeldaAl_(color,dirección) {
+    /*
+    Propósito:          -Indíca si hay bolitas de color **color** en la celda lindante al **dirección**.  
+    Precondición:       -Ninguna.
+    Parámetros:
+        **color**:      -Color.     -Describe el color de las bolitas.
+        **dirección**:  -Dirección. -Describe la dirección de la celda lindante.
+    Tipo:               -Booleano.
+    */
+    
+    // Muevo si precondición para que si no se cumple el propósito falle.
+    Mover(dirección)
+    return(hayBolitas(color))
+}
+
+//TP9
+/*12. El más chico
+BIBLIOTECA Escribir la función mínimoEntre_Y_, que dados dos valores describe aquel que sea más
+chico. Por ejemplo, mínimoEntre_Y_(3, 7) describe 3, mientras que mínimoEntre_Y_(9, 4)
+describe 4.
+a. ¿De qué tipo son los parámetros?
+b. ¿Es válida la expresión mínimoEntre_Y_(Rojo, Azul)? ¿Qué describe?
+c. ¿Qué se describe si son iguales? ¿Es relevante si es uno o el otro?*/
+
+function mínimoEntre_Y_(primerNúmeroAComparar, segundoNúmeroAComparar) {
+  /*
+    PROPÓSITO:                  -Describe el valor más chico entre **primerNúmeroAComparar** y **segundoNúmeroAComparar**.
+    PRECONDICIONES:             -El **primerNúmeroAComparar** no puede ser igual a **segundoNúmeroAComparar**.
+      * primerNúmeroAComparar:  -Número.-Describe el primer número a comparar.
+      * segundoNúmeroAComparar: -Número.-Describe el segundo número a comparar.
+    TIPO:                       -Número.
+
+  */
+  return (choose
+    primerNúmeroAComparar  when (primerNúmeroAComparar<segundoNúmeroAComparar)
+    segundoNúmeroAComparar otherwise
+  )
+}
+
+/*
+a-Los parámetros son de tipo número.
+*/
+
+//b-
+function mínimoEntre_Y_(primerColorAComparar, segundoColorAComparar) {
+  /*
+    PROPÓSITO:                  -Describe el valor más chico entre **primerColorAComparar** y **segundoColorAComparar**.
+    PRECONDICIONES:             -El **primerColorAComparar** debe ser distinto al **segundoColorAComparar**.
+      * primerNúmeroAComparar:  -Color.-Describe el primer color a comparar.
+      * segundoNúmeroAComparar: -Color.-Describe el segundo color a comparar.
+    TIPO:                       -Color.
+
+  */
+  return (choose
+    primerNúmeroAComparar  when (primerNúmeroAComparar<segundoNúmeroAComparar)
+    segundoNúmeroAComparar otherwise
+  )
+}
+
+//c-Si, es relevante ya que uno describe un número y el otro describe un color.
+
+
+/*13. El más grande
+BIBLIOTECA Escribir ahora la función máximoEntre_Y_ que dados dos valores describe aquel que
+sea el más grande.*/
+
+// para colores.
+function máximoEntre_Y_(primerColor, segundoColor) {
+  /*
+    PROPÓSITO:                  -Describe el valor más grande entre **primerColor** y el **segundoColor**.
+    PRECONDICIONES:             -El **primerColor** debe ser distinto del **segundoColor**.
+    PARÁMETROS:
+      * primerColor:            -Color.Describe el primero color a comparar.
+      * segundoColor:           -Color.Describe el segundo color a comparar.
+    TIPO:                       -Color.
+  */
+  return (choose
+    primerColor when (primerColor>segundoColor)
+    segundoColor otherwise
+  )
+}
+
+//para numeros
+function máximoEntre_Y_(primerNúmero, segundoNúmero) {
+  /*
+    PROPÓSITO:                  -Describe el valor más grande entre **primerNúmero** y el **segundoNúmero**.
+    PRECONDICIONES:             -El **primerNúmero** debe ser distinto del **segundoNúmero**.
+    PARÁMETROS:
+      * primerNúmero:            -Color.Describe el primero color a comparar.
+      * segundoNúmero:           -Color.Describe el segundo color a comparar.
+    TIPO:                       -Color.
+  */
+  return (choose
+    primerNúmero when (primerNúmero>segundoNúmero)
+    segundoNúmero otherwise
+  )
+}
+
+/*
+TP9
+18. Contando celdas hacia un lado
+BIBLIOTECA Escribir la función distanciaAlBorde_, que describe la cantidad de celdas que hay
+entre la celda actual y el borde indicado.
+Observación: si la celda actual se encuentra en el borde, la distancia es 0.
+*/
+
+function distanciaAlBorde_(enDirección) {
+  /*
+    PROPÓSITO:        -Describe la cantidad de celdas que hay entre la celda actual y la celda en el borde **enDirección**
+    PRECONDICIONES:   -Ninguna.  
+    PARÁMETROS:
+      * enDirección:  -Dirección. Describe hacía que dirección se encuentra la celda pegada al borde.
+    TIPO:             -Número.
+  */
+    contador:=0
+    while(haySiguienteCeldaEnUnRecorridoAl_(enDirección)) {
+        IrASiguienteCeldaEnUnRecorridoAl_(enDirección)
+        contador:=contador+1
+    }
+    return(contador)
+}
+
+function haySiguienteCeldaEnUnRecorridoAl_(dirección) {
+  /*
+    PROPÓSITO:            -Indíca si existe la siguiente celda en un recorrido hacia el **dirección**.
+    PARÁMETROS:     
+      * dirección:        -Dirección. Describe la dirección del recorrido. 
+    PRECONDICIONES:       -Ninguna.
+    Tipo:                 -Booleano.
+  */
+  return(puedeMover(dirección))
+}
+
+procedure  IrASiguienteCeldaEnUnRecorridoAl_(dirección) {
+  /*
+    PROPÓSITO:        -Posiciona el cabezal en la siguiente celda del recorrido hacia el este.
+    PRECONDICIONES:   -Ninguna.
+    Parámetros:
+        **dirección**:-Dirección.Describe la dirección del recorrido.
+  */
+  if(puedeMover(dirección)) {
+    Mover(dirección)
+  }
+}
+
+
+/*
+19. Mis coordenadas son...
+BIBLIOTECA Escribir las funciones coordenadaX y coordenadaY que retornen la coordenada de la
+columna y la coordenada de la fila de la celda actual, respectivamente. Suponer que 0 es la
+coordenada de la primera fila y columna.
+a. ¿Es necesario escribir un recorrido para estas funciones, o puede reutilizarse alguna otra
+función ya hecha?
+*/
+
+//a- Puede reutilizarse la función distancia al borde la activa anterior.
+
+
+
+function coordenadaY(){
+    /*
+    Propósito:          -Describe la coordenada de la fila actual.
+    Precondición:       -Ninguna.
+    Tipo:               -Número.
+    */
+    return(distanciaAlBorde_(Sur))
+}
+
+function coordenadaX(){
+    /*
+    Propósito:          -Describe la coordenada de la columna actual.
+    Precondición:       -Ninguna.
+    Tipo:               -Número.
+    */
+    return(distanciaAlBorde_(Oeste))
+}
+
+
+/*
+20. Contando filas y columnas
+BIBLIOTECA Escribir las funciones nroFilas y nroColumnas que describan la cantidad de filas y
+columnas del tablero respectivamente.
+a. ¿Se podría conocer la cantidad de filas o columnas del tablero sin que el cabezal se mueva
+realmente de la celda actual?
+b. ¿Qué habría que usar si hubiese que hacerlo exclusivamente con procedimientos?
+c. ¿Es necesario escribir un recorrido para estas funciones, o puede reutilizarse alguna otra
+función ya hecha?
+*/
+
+/*
+a-Si, se puede conocer gracias a las funciones con procesamiento, ya que puede sensar el tablero sin necesidad de que el cabezal se mueva.
+b-
+c-Se puede utilizar la funcion distancia al borde.
+*/
+
+program {
+    return(nroColumnas())
+}
+
+function nroFilas(){
+   /*
+   Propósito:       -Describe el número de filas del tablero. 
+   Precondición:    -Ninguna.
+   Tipo:            -Número.
+   */ 
+    return (distanciaAlBorde_(Norte)+distanciaAlBorde_(Sur)+1) 
+}
+
+function nroColumnas() {
+    /*
+    Propósito:      -Describe el número de columnas del tablero.
+    Precondición:   -Ninguna.
+    Tipo:           -Número.
+    */
+    return(distanciaAlBorde_(Oeste)+distanciaAlBorde_(Este)+1)
+}
+
+
+/*
+21. Contando celdas vacías
+BIBLIOTECA Escribir una función nroVacías que describa la cantidad de celdas vacías del tablero.
+Estructurar el código como recorrido por las celdas del tablero.
+*/
+
+program {
+    return(nroVacías())
+}
+
+function nroVacías() {
+    /*
+    Propósito:      -Describe la cantidad de celdas vacías del tablero.
+    Precondición:   -Ninguna.
+    Tipo:           -Número.   
+    Observación:    -Es un recorrido por celdas.
+    */
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    contadorDeVacías:=0
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)) {
+        contadorDeVacías:=contadorDeVacías+unaSiCeroSino()
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    contadorDeVacías:=contadorDeVacías+unaSiCeroSino()
+    return(contadorDeVacías)
+}
+
+
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:          -Posiciona el cabezal en el inicio del recorrido en dirección **dirPrincipal** y **dirSecundaria**. 
+    PARÁMETROS:         
+      * dirPrincipal:   -Dirección. Indíca la primer dirección que debe tomar el cabezal para ubicarse en la primera celda del recorrido.
+      * dirSecundaria:  -Dirección. Indíca la segunda dirección que debe tomar el cabezal para ubicarse en la primera celda del recorrido.
+    PRECONDICIONES:     -La direcciónes **dirPrincipal** y **dirSecundaria** no pueden ser iguales ni opuestas.
+      * 
+  */
+  IrAlBorde(opuesto(dirPrincipal))
+  IrAlBorde(opuesto(dirSecundaria))
+}
+
+function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:            -Indíca si existe la siguiente celda en un recorrido hacia la **dirPrincipal** y la **dirSecundaria**.
+    PARÁMETROS:     
+      * dirPrincipal:     -Dirección. Indíca la primera dirección del recorrido. 
+      * dirSecundaria:    -Dirección. Indíca la segunda dirección del recorrido.
+    PRECONDICIONES:       -Ninguna.
+      * 
+    Tipo:                 -Booleano.Retorna verdadeor en el caso de que exista una siguiente celda en el recorrido, en caso contrario retorna falso.
+  */
+  return(puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+}
+
+function unaSiCeroSino() {
+    /*
+    Propósito:          -Describe uno si hay una celda vacia.
+    Precondición:       -Ninguna.
+    Tipo:               -Número.
+    */
+    return(
+        choose
+            1 when (esCeldaVacía())
+            0 otherwise
+        )
+}
+
+function esCeldaVacía() {
+  /*
+    PROPÓSITO:      -Indíca si la celda actual está vacía.  
+    PRECONDICIONES: -Ninguna.
+    TIPO:           -Booleano. Retorna verdadero si la celda actual está vacía, en caso contrario retorna falso.
+      * 
+  */
+  return (not hayBolitas(Rojo) && not hayBolitas(Negro) && not hayBolitas(Azul) && not hayBolitas(Verde))
+}
+
+procedure  IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:        -Posiciona el cabezal en la siguiente celda del recorrido con **dirPrincipal** y **dirPrincipal**
+    PRECONDICIONES:   -La **dirPrincipal** no puede ser igual u opuesta a la **dirSecundaria**.
+    PARÁMETROS:
+      * dirPrincipal: -Dirección.-Indíca la primera dirección del recorrido.
+      * dirSecundaria:-Dirección.-Indíca la segunda dirección del recorrido.
+  */
+  //Va al opuesto de la direccion principal.
+  if(puedeMover(dirPrincipal)) {
+    Mover(dirPrincipal)
+  }else {
+    IrAlBorde(opuesto(dirPrincipal))
+    Mover(dirSecundaria)
+  }
+}
+
+
+
+

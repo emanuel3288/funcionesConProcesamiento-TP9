@@ -1,0 +1,24 @@
+/*
+1. Mirando la celda vecina
+Escribir la función hayBolitas_EnCeldaAl_, que, suponiendo que existe una celda lindante en la
+dirección dada, indica si la misma tiene o no bolitas del color indicado. Sí no hay una celda lindante,
+hace BOOM.
+*/
+
+program {
+    return(hayBolitas_EnCeldaAl_(Rojo, Norte))
+}
+
+function hayBolitas_EnCeldaAl_(color, dirección) {
+    /*
+    Propósito:          -Indíca si hay bolitas de color **color** en la celda lindante al **dirección**.
+    Precondición:       -Debe existir la celda lindante al **dirección**.
+    Parámetros:
+        **color**:      -Color.     -Describe el color de las bolitas.
+        **dirección**:  -Dirección. -Describe la dirección de la celda lindante.
+    Tipo:               -Booleano.
+    */
+    
+    Mover(dirección)
+    return(hayBolitas(color))
+}

@@ -1,0 +1,65 @@
+/*
+17. Contando bolitas
+Escribir la función nroBolitas_EnLaFilaActual que describa la cantidad de bolitas del color dado
+en la fila actual.
+a. Escribir la solución con un recorrido de la fila actual que utilice una variable
+cantidadDeBolitasYaVistas cuyo propósito sea describir la cantidad de bolitas del color
+correspondiente que se contaron en cada momento. ¿Cuántas se vieron antes de empezar a
+contar? ¿Cómo estar seguro que se consideraron todas las celdas para contarlas?
+b. ¿En qué celda queda el cabezal al utilizar la función desde cualquier punto del programa? ¿Por
+qué?
+*/
+
+//b-El cabezal queda siempre en la celda a inicio,nunca se mueve. Porque se puede sensar el tablero sin necesidad de mover el cabezal de su posición inicial.
+
+program {
+    return(nroBolitas_EnLaFilaActual(Verde))
+}
+
+
+function nroBolitas_EnLaFilaActual(color) {
+    /*
+    Propósito:          -Describe el número de bolitas **color** en la fila actual.  
+    Precondición:       -Ninguna.
+    Parámetros:
+        **color**:      -Color.Indica el color de las bolitas a contar.
+    Tipo:               -Número.
+    */
+    IrAPrimeraCeldaEnUnRecorridoAlEste()
+    cantidadDeBolitasYaVistas:=nroBolitas(color)
+    while(haySiguienteCeldaEnUnRecorridoAlEste()) {
+        IrASiguienteCeldaEnUnRecorridoAlEste()
+        cantidadDeBolitasYaVistas:=cantidadDeBolitasYaVistas+nroBolitas(color)
+    }
+    return(cantidadDeBolitasYaVistas)
+}
+
+procedure IrAPrimeraCeldaEnUnRecorridoAlEste() {
+  /*
+    PROPÓSITO:          -Posiciona el cabezal en el inicio de un recorrido hacia este. 
+    PRECONDICIONES:     -Ninguna.
+  */
+   IrAlBorde(Oeste)
+}
+
+function haySiguienteCeldaEnUnRecorridoAlEste() {
+  /*
+    PROPÓSITO:            -Indíca si existe la siguiente celda en un recorrido hacia el este.
+    PARÁMETROS:     
+      * dirección:        -Dirección. Indíca la primera dirección del recorrido. 
+    PRECONDICIONES:       -Ninguna.
+    Tipo:                 -Booleano.
+  */
+  return(puedeMover(Este))
+}
+
+procedure  IrASiguienteCeldaEnUnRecorridoAlEste() {
+  /*
+    PROPÓSITO:        -Posiciona el cabezal en la siguiente celda del recorrido hacia el este.
+    PRECONDICIONES:   -Ninguna.
+  */
+  //Va al opuesto de la direccion principal.
+  if(puedeMover(Este)) {
+    Mover(Este)
+  }
+}

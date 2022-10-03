@@ -1,0 +1,35 @@
+/*
+5. Y volviendo a mirar en la fila o columna
+Escribir la función hayCeldaVacíaHacia_, que indica si en alguna de las celdas hacia la dirección
+dada (sin incluir la celda actual) hay una que esté vacía.
+*/
+
+program {
+    return(hayCeldaVacíaHacia_(Este))
+}
+
+function hayCeldaVacíaHacia_(dirección) {
+    /*
+    Propósito:          -Indíca si hay una celda vacia hacia la dirección **dirección**.
+    Precondición:       -Debe existir al menos una celda vacía en la dirección **dirección**.
+                        -La celda actual debe tener al menos una bolita.
+    Parámetros:
+        **dirección**:  -Dirección. -Describe hacia donde se mueve el cabezal.
+    Tipo:               -Booleano.
+    */
+    while(not esCeldaVacía()) {
+        Mover(dirección)
+    }
+    return(esCeldaVacía())
+}
+
+
+function esCeldaVacía() {
+  /*
+    PROPÓSITO:      -Indíca si la celda actual está vacía.  
+    PRECONDICIONES: -Ninguna.
+    TIPO:           -Booleano. Retorna verdadero si la celda actual está vacía, en caso contrario retorna falso.
+      * 
+  */
+  return (not hayBolitas(Rojo) && not hayBolitas(Negro) && not hayBolitas(Azul) && not hayBolitas(Verde))
+}

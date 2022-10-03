@@ -1,0 +1,67 @@
+/*
+6. Y si miramos el tablero
+Escribir la función hayAlgunaBolita_, que indica si en alguna de las celdas del tablero existe una
+bolita del color dado.
+*/
+
+program {
+    return(hayAlgunaBolita_(Rojo))
+}
+
+function hayAlgunaBolita_(color) {
+    /*
+    Propósito:          -Indíca si hay alguna bolita de color **color** en el tablero.
+    Precondición:       -Ninguna.
+    Parámetros:
+        **dirección**:  -Color. -Describe el color de la bolita del tablero.
+    Tipo:               -Booleano.
+    */
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    while(not hayBolitas(color) && haySiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)) {
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    return(hayBolitas(color))
+}
+
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:          -Posiciona el cabezal en el inicio del recorrido en dirección **dirPrincipal** y **dirSecundaria**. 
+    PARÁMETROS:
+      * dirPrincipal:   -Dirección. Indíca la primer dirección que debe tomar el cabezal para ubicarse en la primera celda del recorrido.
+      * dirSecundaria:  -Dirección. Indíca la segunda dirección que debe tomar el cabezal para ubicarse en la primera celda del recorrido.
+    PRECONDICIONES:     -La direcciónes **dirPrincipal** y **dirSecundaria** no pueden ser iguales ni opuestas..
+      * 
+  */
+  IrAlBorde(opuesto(dirPrincipal))
+  IrAlBorde(opuesto(dirSecundaria))
+}
+
+function haySiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:            -Indíca si existe la siguiente celda en un recorrido hacia la **dirPrincipal** y la **dirSecundaria**.
+    PARÁMETROS:     
+      * dirPrincipal:     -Dirección. Indíca la primera dirección del recorrido. 
+      * dirSecundaria:    -Dirección. Indíca la segunda dirección del recorrido.
+    PRECONDICIONES:       -Ninguna.
+      * 
+    Tipo:                 -Booleano.Retorna verdadeor en el caso de que exista una siguiente celda en el recorrido, en caso contrario retorna falso.
+  */
+  return(puedeMover(dirPrincipal) || puedeMover(dirSecundaria))
+}
+
+procedure  IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:        -Posiciona el cabezal en la siguiente celda del recorrido con **dirPrincipal** y **dirPrincipal**
+    PRECONDICIONES:   -La **dirPrincipal** no puede ser igual u opuesta a la **dirSecundaria**.
+    PARÁMETROS:
+      * dirPrincipal: -Dirección.-Indíca la primera dirección del recorrido.
+      * dirSecundaria:-Dirección.-Indíca la segunda dirección del recorrido.
+  */
+  //Va al opuesto de la direccion principal.
+  if(puedeMover(dirPrincipal)) {
+    Mover(dirPrincipal)
+  }else {
+    IrAlBorde(opuesto(dirPrincipal))
+    Mover(dirSecundaria)
+  }
+}

@@ -1,0 +1,22 @@
+/*
+3. Mirando en la celda al borde
+Escribir la función hayBolitas_EnElBorde_, que indica si en la celda que se encuentra en el borde
+dado por la dirección, hay bolitas del color indicado.
+*/
+
+program {
+    return(hayBolitas_EnElBorde_(Rojo,Este))
+}
+
+function hayBolitas_EnElBorde_(color,dirección) {
+    /*
+    Propósito:          -Indíca si hay bolitas de color **color** en la celda del borde de la dirección dada.  
+    Precondición:       -Ninguna.
+    Parámetros:
+        **color**:      -Color.     -Describe el color de las bolitas.
+        **dirección**:  -Dirección. -Describe la dirección de la celda lindante.
+    Tipo:               -Booleano.
+    */
+    IrAlBorde(dirección)
+    return(hayBolitas(color))
+}
