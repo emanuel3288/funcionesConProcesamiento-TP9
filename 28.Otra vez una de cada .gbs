@@ -1,0 +1,19 @@
+/*
+28.Otra vez una de cada
+Volver a escribir el procedimiento PonerUnaDeCadaColor que pone una bolita de cada color,
+estructurando la solución como un recorrido sobre colores.
+*/
+
+procedure PonerUnaDeCadaColor() {
+    /*
+    Propósito:      -Pone una de cada color en la celda actual.
+    Precondición:   -Ninguna.
+    */
+    color:=minColor()
+    while(color/=maxColor()) { //color=Azul     //color=Negro       //color=Rojo    
+        Poner(color)           //Poner(Azul)    //Poner(Negro)      //Poner(Rojo)
+        color:=siguiente(color)//color=Negro    //color=Rojo        //color=Verde
+    }
+    Poner(color)                //Poner(Verde)
+}
+
