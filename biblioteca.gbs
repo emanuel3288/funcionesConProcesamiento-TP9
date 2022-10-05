@@ -760,4 +760,28 @@ procedure  IrASiguienteCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
   }
 }
 
+/*
+26.Contar se vuelve más fácil
+BIBLIOTECA Una subtarea de mucha utilidad es aquella que describe 1 cuando se cumple una
+condición o cero en caso contrario. Se pide entonces escriba la función unoSi_ceroSiNo que realiza
+precisamente esto.
+*/
 
+program {
+    return( unoSi_ceroSiNo())
+}
+
+function unoSi_ceroSiNo(condición)   {
+    /*
+    Propósito:          -Describe uno si la condición **condición** se cumple y cero sino se cumple.  
+    Precondición:       -Ninguna.
+    Parámetros:
+        **condición**:  -Booleano. Indíca la condición a evaluar.
+    Tipo:               -Número.
+    */
+    return(choose
+        
+        1 when (condicion),
+        0 otherwise
+    )
+}
