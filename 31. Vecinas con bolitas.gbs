@@ -1,0 +1,71 @@
+/*
+31. Vecinas con bolitas
+Escribir la función cantidadDeVecinasConBolitas que describe la cantidad de celdas vecinas que
+contienen bolitas (de cualquier color). En este caso el concepto de vecindad implica tanto las celdas
+ortogonales como las diagonales, es decir, las celdas hacia el N, E, S y O y también las diagonales
+hacia el NE, SE, SO y NO. La función realizada debe ser total.
+*/
+
+program {
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+}
+
+
+function cantidadDeVecinasConBolitas() {
+    /*
+    Propósito:      -Describe la cantidad de celdas vecinas que contiene bolitas de cualquier color.
+    Precondición:   -Ninguna.
+    Tipo:           -Número.
+    */
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    contador:=0
+    while() {
+        contador:=contador+unoSi_ceroSiNo(esCeldaConBolitas())
+        
+    }
+    contador:=contador+unoSi_ceroSiNo(esCeldaConBolitas())
+    return(contador)
+}
+
+
+
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:          -Posiciona el cabezal en el inicio del recorrido en dirección **dirPrincipal** y **dirSecundaria**. 
+    PARÁMETROS:         
+      * dirPrincipal:   -Dirección. Indíca la primer dirección que debe tomar el cabezal para ubicarse en la primera celda del recorrido.
+      * dirSecundaria:  -Dirección. Indíca la segunda dirección que debe tomar el cabezal para ubicarse en la primera celda del recorrido.
+    PRECONDICIONES:     -La direcciónes **dirPrincipal** y **dirSecundaria** no pueden ser iguales ni opuestas.
+                        -Deben existir al menos una celda en las direcciones **dirPrincipal** y **dirSecundaria**.
+  */
+  Mover(opuesto(dirPrincipal))
+  Mover(opuesto(dirSecundaria))
+}
+
+
+function unoSi_ceroSiNo(condición)   {
+    /*
+    Propósito:          -Describe uno si la condición **condición** se cumple y cero sino se cumple.  
+    Precondición:       -Ninguna.
+    Parámetros:
+        **condición**:  -Booleano. Indíca la condición a evaluar.
+    Tipo:               -Número.
+    */
+    return(choose
+        
+        1 when (condicion),
+        0 otherwise
+    )
+}
+
+function esCeldaConBolitas() {
+  /*
+    PROPÓSITO:      -Indíca si hay al menos una bolita de cualquier color en la celda actual.
+    PRECONDICIONES: -Ninguna.
+    TIPO:           -Booleano. Retorna verdadero en el caso de que haya al menos una bolita de cualquier color en la celda actual, en caso contrario retorna falso.
+      * 
+  */
+  return (hayBolitas(Rojo)|| hayBolitas(Verde)|| hayBolitas(Azul)|| hayBolitas(Negro))
+}
+
+
