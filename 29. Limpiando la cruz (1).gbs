@@ -1,0 +1,116 @@
+/*
+29. Limpiando la cruz
+Escribir el procedimiento LimpiarCruzDeColor_ que dado un color limpia el dibujo de una cruz
+realizado con bolitas de dicho color, bajo la suposición de que el cabezal se encuentra en el centro de
+dicha cruz.
+*/
+
+program {
+    LimpiarCruzDe_(Rojo)
+}
+
+procedure LimpiarCruzDe_(color) {
+    /*
+    Propósito:          -Limpia una cruz de color **color** con centro en la celda actual.
+    Precondición:       -El cabezal inicia y finaliza en el centro de la cruz.
+                        -Los segmentos de la cruz deben ser del mismo largo.
+    Parámetros:
+        **color**:      -Color.Describe el color de la cruz a limpiar.
+    Observación:        -Es un recorrido del tipo enumerativo.
+    */
+    direccion:=minDir()
+    while(direccion/=maxDir()){ 
+        EliminarSegmentoDe_En_(color,direccion)
+        direccion:=siguiente(direccion)
+    }
+    EliminarSegmentoDe_En_(color,direccion)
+}
+
+procedure EliminarSegmentoDe_En_(color,direccion) {
+    /*
+    Propósito:              -Elimina un segmento de color **color** hacia la dirección **direccion**.
+    Precondición:           -El cabezal inicia y finaliza en el centro de la cruz.
+    Parámetros:
+        **color**:          -Color    | Describe el color del segmento a eliminar.
+        **direccion**:      -Dirección| Describe la dirección en la que se encuentra el segmento a eliminar.
+    Observación:            -Es un recorrido por celdas.
+    */
+    IrAlInicioDelSegmentoAl_(direccion)
+    while(haySiguienteCeldaEnUnRecorridoAl_(direccion)) {
+        EliminarPuntoDe_DelSegmento(color)
+        IrASiguienteCeldaEnUnRecorridoAl_(direccion)
+    }
+    EliminarPuntoDe_DelSegmento(color)
+    VolverAlCentroDesde_(direccion)
+}
+    
+procedure IrAlInicioDelSegmentoAl_(direccion) {
+    /*
+    Propósito:          -Posiciona el cabezal en el inicio del segmento en direccion **direccion**.
+    Precondición:       -Debe existir al menos una celda en direccion **direccion**.
+    Parámetros:
+        **direccion**:  -Direccion. Describe la direccion en la que se mueve el cabezal.
+    */
+    Mover(direccion)
+}
+
+function haySiguienteCeldaEnUnRecorridoAl_(dirección) {
+  /*
+    PROPÓSITO:            -Indíca si existe la siguiente celda en un recorrido hacia el **dirección**.
+    PARÁMETROS:     
+      * dirección:        -Dirección. Describe la dirección del recorrido. 
+    PRECONDICIONES:       -Ninguna.
+    Tipo:                 -Booleano.
+  */
+  return(puedeMover(dirección))
+}
+
+procedure EliminarPuntoDe_DelSegmento(color) {
+    /*
+    Propósito:          -Eliminar un punto de color **color** del segmento de la cruz.
+    Precondición:       -Debe existir un punto de color **color** en la celda actual.
+    Parámetros:
+        **color**:      -Color.Describe el color del punto a eliminar.
+    Observación:        -El punto de color está compuesto por una bolita de color **color**.
+    */
+    Sacar(color)
+}
+
+procedure  IrASiguienteCeldaEnUnRecorridoAl_(dirección) {
+  /*
+    PROPÓSITO:        -Posiciona el cabezal en la siguiente celda del recorrido hacia el este.
+    PRECONDICIONES:   -Ninguna.
+    Parámetros:
+        **dirección**:-Dirección.Describe la dirección del recorrido.
+  */
+  if(puedeMover(dirección)) {
+    Mover(dirección)
+  }
+}
+
+procedure VolverAlCentroDesde_(direccion) {
+    /*d
+    Propósito:          -Vuelve al centro de la cruz desde el segmento **direccion**.
+    Precondición:       -Debe existir al menos una celda en la dirección opuesta.
+    Parámetros:
+        **direccion**:  -Dirección. Describe la dirección en la que se mueve el cabezal.
+    */
+    repeat(3){
+        Mover(opuesto(direccion))
+    }
+}
+
+
+//BIBLIOTECA
+procedure Mover_VecesAl_(cantidadAMover, direcciónAMover) {
+  /*
+  PROPOSITO:    -Posiciona el cabezal **cantidadAMover** celdas en la dirección **direcciónAMover**.
+  PRECONDICION: -Deben existir al menos **cantidadAMover** celdas al **direcciónAMover** de la celda actual.
+  PARAMETROS:   -**cantidadAMover**:   -Numero.   Indíca la cantidad de veces que se va a mover el cabezal.
+                -**direcciónAMover**:  -Dirección.Indíca la dirección en la que el cabezal se deberá mover.
+  */
+  repeat(cantidadAMover) {
+    Mover(direcciónAMover)
+  }
+}
+
