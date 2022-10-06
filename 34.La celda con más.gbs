@@ -1,0 +1,70 @@
+/*
+34.La celda con más
+Escribir las funciones coordenadaXConMásBolitas y coordenadaYConMásBolitas que
+describen las coordenadas X e Y de aquella celda que tiene más bolitas (en total) que el resto. Se
+garantiza por precondición que hay alguna celda que tiene más bolitas que el resto.
+*/
+
+
+program {
+    return(coordenadaYConMásBolitas())
+}
+function coordenadaXConMásBolitas() {
+    /*
+    Propósito:          -Describe la coordenada en x que tiene más bolitas.
+    Precondición:       -Debe existir al menos una celda que tiene más bolitas que el resto.
+    Tipo:               -Número.
+    */
+    IrAlBorde(Oeste)
+    laCeldaConMásBolitas:=cantidadTotalDeLaCelda()
+    while(puedeMover(Este)) {
+        laCeldaConMásBolitas:=máximoEntre_Y_(laCeldaConMásBolitas, cantidadTotalDeLaCelda())
+        Mover(Este)
+    }
+    laCeldaConMásBolitas:=máximoEntre_Y_(laCeldaConMásBolitas, cantidadTotalDeLaCelda())
+    return(laCeldaConMásBolitas)
+}
+
+function coordenadaYConMásBolitas() {
+    /*
+    Propósito:          -Describe la coordenada en y que tiene más bolitas.
+    Precondición:       -Debe existir al menos una celda que tiene más bolitas que el resto.
+    Tipo:               -Número.
+    */
+    IrAlBorde(Sur)
+    laCeldaConMásBolitas:=cantidadTotalDeLaCelda()
+    while(puedeMover(Norte)) {
+        laCeldaConMásBolitas:=máximoEntre_Y_(laCeldaConMásBolitas, cantidadTotalDeLaCelda())
+        Mover(Norte)
+    }
+    laCeldaConMásBolitas:=máximoEntre_Y_(laCeldaConMásBolitas, cantidadTotalDeLaCelda())
+    return(laCeldaConMásBolitas)
+}
+
+
+function cantidadTotalDeLaCelda() {
+    /*
+    Propósito:          -Describe la cantidad total de bolitas de la celda actual.
+    Precondición:       -Ninguna.
+    Tipo:               -Número.
+    */
+    return(nroBolitas(Rojo)+nroBolitas(Negro)+nroBolitas(Azul)+nroBolitas(Verde))
+}
+
+//Biblioteca
+
+//para numeros
+function máximoEntre_Y_(primerNúmero, segundoNúmero) {
+  /*
+    PROPÓSITO:                  -Describe el valor más grande entre **primerNúmero** y el **segundoNúmero**.
+    PRECONDICIONES:             -El **primerNúmero** debe ser distinto del **segundoNúmero**.
+    PARÁMETROS:
+      * primerNúmero:            -Color.Describe el primero color a comparar.
+      * segundoNúmero:           -Color.Describe el segundo color a comparar.
+    TIPO:                       -Color.
+  */
+  return (choose
+    primerNúmero when (primerNúmero>segundoNúmero)
+    segundoNúmero otherwise
+  )
+}
