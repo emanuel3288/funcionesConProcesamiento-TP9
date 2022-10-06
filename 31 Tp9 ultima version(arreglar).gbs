@@ -1,15 +1,3 @@
-/*
-30. Hacia la cual hay bolitas
-Escribir la función direcciónHaciaLaCualHayBolitasDe_ que dado un color describe la dirección
-hacia la cual hay bolitas de dicho color, bajo la suposición de que existe una celda vecina con bolitas
-de dicho color en alguna de las dirección, y es única (no hay más de una vecina con bolitas de ese
-color).
-*/
-
-program  {
-    
-    return(direcciónHaciaLaCualHayBolitasDe_(Rojo))
-}
 
 function direcciónHaciaLaCualHayBolitasDe_(color) {
     /*
