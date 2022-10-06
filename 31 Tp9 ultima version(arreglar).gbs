@@ -1,5 +1,5 @@
 
-function direcciónHaciaLaCualHayBolitasDe_(color) {
+function cantidadDeVecinasConBolitas(){
     /*
     Próposito:          -Describe una dirección hacia la cual hay una celda con bolitas de dicho color.
     Precondición:       -Deben existir todas las celdas lindantes a la celda actual.
@@ -7,6 +7,7 @@ function direcciónHaciaLaCualHayBolitasDe_(color) {
     Parámetros:         
         **color**:      -Color. Describe el color de la bolita de la celda lindante.
     Tipo:               -Dirección.
+    Observación:        -Es un recorrido por filas.
     */
     contadorY:=0
     contadorCelda:=0
