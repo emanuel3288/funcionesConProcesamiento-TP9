@@ -1,0 +1,139 @@
+/*
+30. Hacia la cual hay bolitas
+Escribir la función direcciónHaciaLaCualHayBolitasDe_ que dado un color describe la dirección
+hacia la cual hay bolitas de dicho color, bajo la suposición de que existe una celda vecina con bolitas
+de dicho color en alguna de las dirección, y es única (no hay más de una vecina con bolitas de ese
+color).
+*/
+
+program  {
+    
+    return(direcciónHaciaLaCualHayBolitasDe_(Rojo))
+}
+
+function direcciónHaciaLaCualHayBolitasDe_(color) {
+    /*
+    Próposito:          -Describe una dirección hacia la cual hay una celda con bolitas de dicho color.
+    Precondición:       -Deben existir todas las celdas lindantes a la celda actual.
+                        -Debe existir una única celda lindante con bolitas de color **color**.
+    Parámetros:         
+        **color**:      -Color. Describe el color de la bolita de la celda lindante.
+    Tipo:               -Dirección.
+    */
+    contadorY:=0
+    contadorCelda:=0
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    while(contadorCelda/=3) {
+        contadorY:=contadorY + cantidadDeCeldasConBolitasDe_(Rojo)
+        Mover(Norte)
+        contadorCelda:=contadorCelda+1
+    }
+    return(contadorY)
+}
+
+function cantidadDeCeldasConBolitasDe_(color) {
+    /*
+    Propósito:          -Describe la cantidad de celdas lindates en la fila actual con bolitas de color **color**.
+    Precondición:       -Deben existir al menos 2 celdas al este de la celda actual.
+    Parámetros:
+        **color**:      -Color.Describe el color de las bolitas que pueden contener las celdas lindantes.
+    Tipo:               -Número.
+    */
+    contadorX:=0
+    contadorCelda:=0
+    while(contadorCelda /= 3) {
+        contadorX:=contadorX + unoSi_ceroSiNo(hayBolitas(color))
+        Mover(Este)
+        contadorCelda:=contadorCelda + 1
+    }
+    return(contadorX)
+}
+
+//BIBLIOTECA
+
+procedure IrAPrimeraCeldaEnUnRecorridoAl_Y_(dirPrincipal, dirSecundaria) {
+  /*
+    PROPÓSITO:          -Posiciona el cabezal en el inicio del recorrido en dirección **dirPrincipal** y **dirSecundaria**. 
+    PARÁMETROS:         
+      * dirPrincipal:   -Dirección. Indíca la primer dirección que debe tomar el cabezal para ubicarse en la primera celda del recorrido.
+      * dirSecundaria:  -Dirección. Indíca la segunda dirección que debe tomar el cabezal para ubicarse en la primera celda del recorrido.
+    PRECONDICIONES:     -La direcciónes **dirPrincipal** y **dirSecundaria** no pueden ser iguales ni opuestas.
+                        -Deben existir al menos una celda en las direcciones **dirPrincipal** y **dirSecundaria**.
+  */
+  Mover(opuesto(dirPrincipal))
+  Mover(opuesto(dirSecundaria))
+}
+
+
+function coordenadaY(){
+    /*
+    Propósito:          -Describe la coordenada de la fila actual.
+    Precondición:       -Ninguna.
+    Tipo:               -Número.
+    */
+    return(distanciaAlBorde_(Sur))
+}
+
+function unoSi_ceroSiNo(condición)   {
+    /*
+    Propósito:          -Describe uno si la condición **condición** se cumple y cero sino se cumple.  
+    Precondición:       -Ninguna.
+    Parámetros:
+        **condición**:  -Booleano. Indíca la condición a evaluar.
+    Tipo:               -Número.
+    */
+    return(choose
+        
+        1 when (condición)
+        0 otherwise
+    )
+}
+
+
+function coordenadaX(){
+    /*
+    Propósito:          -Describe la coordenada de la columna actual.
+    Precondición:       -Ninguna.
+    Tipo:               -Número.
+    */
+    return(distanciaAlBorde_(Oeste))
+}
+
+function distanciaAlBorde_(enDirección) {
+  /*
+    PROPÓSITO:        -Describe la cantidad de celdas que hay entre la celda actual y la celda en el borde **enDirección**
+    PRECONDICIONES:   -Ninguna.  
+    PARÁMETROS:
+      * enDirección:  -Dirección. Describe hacía que dirección se encuentra la celda pegada al borde.
+    TIPO:             -Número.
+  */
+    contador:=0
+    while(haySiguienteCeldaEnUnRecorridoAl_(enDirección)) {
+        IrASiguienteCeldaEnUnRecorridoAl_(enDirección)
+        contador:=contador+1
+    }
+    return(contador)
+}
+
+function haySiguienteCeldaEnUnRecorridoAl_(dirección) {
+  /*
+    PROPÓSITO:            -Indíca si existe la siguiente celda en un recorrido hacia el **dirección**.
+    PARÁMETROS:     
+      * dirección:        -Dirección. Describe la dirección del recorrido. 
+    PRECONDICIONES:       -Ninguna.
+    Tipo:                 -Booleano.
+  */
+  return(puedeMover(dirección))
+}
+
+procedure  IrASiguienteCeldaEnUnRecorridoAl_(dirección) {
+  /*
+    PROPÓSITO:        -Posiciona el cabezal en la siguiente celda del recorrido hacia el este.
+    PRECONDICIONES:   -Ninguna.
+    Parámetros:
+        **dirección**:-Dirección.Describe la dirección del recorrido.
+  */
+  if(puedeMover(dirección)) {
+    Mover(dirección)
+  }
+}
