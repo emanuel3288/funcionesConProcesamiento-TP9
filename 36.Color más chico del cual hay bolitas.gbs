@@ -1,0 +1,43 @@
+/*
+36.Color más chico del cual hay bolitas
+Escribir la función colorMásChicoDelCualHayBolitas que describe el color más chico para el
+cual haya bolitas en la celda actual. Por ej. sí en la celda hay bolitas Negras, Rojas y Verdes, el color
+más chico del cual hay bolitas es Negro. Sí solo hay bolitas de color Rojo y Verde, el más chico es Rojo.
+a. ¿Qué pasa si no hay bolitas en la celda actual?
+b. ¿Qué tipo de recorrido se está aplicando?
+*/
+
+
+program {
+    return(colorMásChicoDelCualHayBolitas())
+}
+
+function colorMásChicoDelCualHayBolitas() {
+    /*
+    Propósito:          -Describe el color más chico de la cúal hay bolitas en la celda actual.
+    Precondición:       -Debe existir al menos una bolita de color en la celda actual..
+    Tipo:               -Color.
+    */
+
+    return(choose
+            Azul                     when (hayBolitas(Azul))
+            Negro                    when (not hayBolitas(Azul)&& hayBolitas(Negro))
+            Rojo                     when (not hayBolitas(Azul)&& not hayBolitas(Negro) && hayBolitas(Rojo))
+            Verde                    otherwise
+    )
+}
+//Biblioteca
+function mínimoEntre_Y_(primerColorAComparar, segundoColorAComparar) {
+  /*
+    PROPÓSITO:                  -Describe el valor más chico entre **primerColorAComparar** y **segundoColorAComparar**.
+    PRECONDICIONES:             -El **primerColorAComparar** debe ser distinto al **segundoColorAComparar**.
+      * primerNúmeroAComparar:  -Color.-Describe el primer color a comparar.
+      * segundoNúmeroAComparar: -Color.-Describe el segundo color a comparar.
+    TIPO:                       -Color.
+
+  */
+  return (choose
+    primerColorAComparar  when (primerColorAComparar<segundoColorAComparar)
+    segundoColorAComparar otherwise
+  )
+}
