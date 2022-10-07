@@ -1,0 +1,37 @@
+program {
+    return(laQueTieneMasEntre_Y_(0, 3))
+}
+
+
+function laQueTieneMasEntre_Y_(primeraCoordenada, segundaCoordenada) {
+    
+    return(choose
+        primeraCoordenada when (cantidadTotalDeBolitasEnLa_X(primeraCoordenada)>cantidadTotalDeBolitasEnLa_X(segundaCoordenada))
+        segundaCoordenada otherwise
+    )
+}
+
+
+
+function cantidadTotalDeBolitasEnLa_X(coordenada) {
+    
+    repeat(coordenada) {
+        Mover(Este)
+    }
+    return(nroBolitas(Rojo)+nroBolitas(Verde)+nroBolitas(Negro)+nroBolitas(Azul))
+}
+
+function máximoEntre_Y_(primerNúmero, segundoNúmero) {
+  /*
+    PROPÓSITO:                  -Describe el valor más grande entre **primerNúmero** y el **segundoNúmero**.
+    PRECONDICIONES:             -El **primerNúmero** debe ser distinto del **segundoNúmero**.
+    PARÁMETROS:
+      * primerNúmero:            -Color.Describe el primero color a comparar.
+      * segundoNúmero:           -Color.Describe el segundo color a comparar.
+    TIPO:                       -Color.
+  */
+  return (choose
+    primerNúmero  when          (primerNúmero>segundoNúmero)
+    segundoNúmero otherwise
+  )
+}
