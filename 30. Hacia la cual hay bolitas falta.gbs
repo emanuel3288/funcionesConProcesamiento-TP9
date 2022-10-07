@@ -14,8 +14,7 @@ program  {
 function direcciónHaciaLaCualHayBolitasDe_(color) {
     /*
     Próposito:          -Describe una dirección hacia la cual hay una celda con bolitas de dicho color.
-    Precondición:       -Deben existir todas las celdas lindantes a la celda actual.
-                        -Debe existir una única celda lindante con bolitas de color **color**.
+    Precondición:       -Debe existir una única celda lindante con bolitas de color **color**.
     Parámetros:         
         **color**:      -Color. Describe el color de la bolita de la celda lindante.
     Tipo:               -Dirección.
