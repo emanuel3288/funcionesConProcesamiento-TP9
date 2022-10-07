@@ -1,0 +1,22 @@
+program {
+    return(laQueTieneMasEntre_Y_(0, 3))
+}
+
+
+function laQueTieneMasEntre_Y_(primeraCoordenada, segundaCoordenada) {
+    
+    return(choose
+        primeraCoordenada when (cantidadTotalDeBolitasEnLa_Y(primeraCoordenada)>cantidadTotalDeBolitasEnLa_Y(segundaCoordenada))
+        segundaCoordenada otherwise
+    )
+}
+
+
+
+function cantidadTotalDeBolitasEnLa_Y(coordenada) {
+    
+    repeat(coordenada) {
+        Mover(Este)
+    }
+    return(nroBolitas(Rojo)+nroBolitas(Verde)+nroBolitas(Negro)+nroBolitas(Azul))
+}
