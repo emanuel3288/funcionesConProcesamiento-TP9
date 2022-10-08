@@ -1,0 +1,171 @@
+program {
+    return(coordenadaYConMásBolitas())
+}
+
+
+
+function coordenadaYConMásBolitas() {
+    /*
+    Propósito:          -Describe la coordenada en x que tiene más bolitas.
+    Precondición:       -Debe existir al menos una celda que tiene más bolitas que el resto.
+    Tipo:               -Número.
+    */
+    IrAlBorde(Sur)
+    cantidadMaxDeBolitas         :=númeroMáximoDeBolitasEnY()
+    while(cantidadMaxDeBolitas/=cantidadDeBolitasEnCelda()) {
+        Mover(Norte)
+    }
+    return(coordenadaY())
+}
+
+function númeroMáximoDeBolitasEnY() {
+/*
+PROPÓSITO: Describe el número máximo de bolitas en una celda del tablero.
+PRECONDICIÓN: Debe haber una celda con más bolitas que el resto.
+OBSERVACIÓN: Es un recorrido de números máximos donde se busca la mayor cantidad de bolitas en una celda.
+que colección recorre??
+TIPO: Número.
+
+*/
+    máximoActual := cantidadDeBolitasEnCelda()
+    IrAlBorde(Sur)  
+    while(puedeMover(Norte)) {
+        máximoActual := máximoEntre_Y_(máximoActual, cantidadDeBolitasEnCelda())
+        Mover(Norte)
+   }   
+    máximoActual := máximoEntre_Y_(máximoActual, cantidadDeBolitasEnCelda())
+    return (máximoActual)
+}
+
+
+
+function coordenadaXConMásBolitas() {
+    /*
+    Propósito:          -Describe la coordenada en x que tiene más bolitas.
+    Precondición:       -Debe existir al menos una celda que tiene más bolitas que el resto.
+    Tipo:               -Número.
+    */
+    IrAlBorde(Oeste)
+    cantidadMaxDeBolitas         :=númeroMáximoDeBolitasEnX()
+    while(cantidadMaxDeBolitas/=cantidadDeBolitasEnCelda()) {
+        Mover(Este)
+    }
+    return(coordenadaX())
+}
+
+
+function númeroMáximoDeBolitasEnX() {
+/*
+PROPÓSITO: Describe el número máximo de bolitas en una celda del tablero.
+PRECONDICIÓN: Debe haber una celda con más bolitas que el resto.
+OBSERVACIÓN: Es un recorrido de números máximos donde se busca la mayor cantidad de bolitas en una celda.
+que colección recorre??
+TIPO: Número.
+
+*/
+    máximoActual := cantidadDeBolitasEnCelda()
+    IrAlBorde(Oeste)  
+    while(puedeMover(Este)) {
+        máximoActual := máximoEntre_Y_(máximoActual, cantidadDeBolitasEnCelda())
+        Mover(Este)
+   }   
+    máximoActual := máximoEntre_Y_(máximoActual, cantidadDeBolitasEnCelda())
+    return (máximoActual)
+}
+
+
+function máximoEntre_Y_(máximoActual,cantidadDeBolitasEnCelda){
+
+/*
+PROPÓSITO: Indica *cantidadDeBolitasEnCelda* cuando *máximoActual* es menor.
+Caso contrario, indica *máximoActual*
+PRECONDICIÓN: Ninguna.
+PARÁMETROS: *máximoActual*: Número
+*cantidadDeBolitasEnCelda*: Número
+TIPO: Booleano.
+*/
+    return( 
+        choose 
+                cantidadDeBolitasEnCelda() when (máximoActual < cantidadDeBolitasEnCelda())
+
+                máximoActual otherwise
+        )
+
+}
+
+
+function cantidadDeBolitasEnCelda() {
+
+/*
+
+PROPÓSITO: Indica la cantidad total de bolitas en la celda actual.
+
+PRECONDICIÓN: No hay.
+
+TIPO: Número.
+
+*/
+
+return (nroBolitas(Azul) + nroBolitas(Rojo) + nroBolitas(Negro) + nroBolitas(Verde))
+
+}
+
+
+
+function coordenadaY(){
+    /*
+    Propósito:          -Describe la coordenada de la fila actual.
+    Precondición:       -Ninguna.
+    Tipo:               -Número.
+    */
+    return(distanciaAlBorde_(Sur))
+}
+
+function coordenadaX(){
+    /*
+    Propósito:          -Describe la coordenada de la columna actual.
+    Precondición:       -Ninguna.
+    Tipo:               -Número.
+    */
+    return(distanciaAlBorde_(Oeste))
+}
+
+function distanciaAlBorde_(enDirección) {
+  /*
+    PROPÓSITO:        -Describe la cantidad de celdas que hay entre la celda actual y la celda en el borde **enDirección**
+    PRECONDICIONES:   -Ninguna.  
+    PARÁMETROS:
+      * enDirección:  -Dirección. Describe hacía que dirección se encuentra la celda pegada al borde.
+    TIPO:             -Número.
+  */
+    contador:=0
+    while(haySiguienteCeldaEnUnRecorridoAl_(enDirección)) {
+        IrASiguienteCeldaEnUnRecorridoAl_(enDirección)
+        contador:=contador+1
+    }
+    return(contador)
+}
+
+function haySiguienteCeldaEnUnRecorridoAl_(dirección) {
+  /*
+    PROPÓSITO:            -Indíca si existe la siguiente celda en un recorrido hacia el **dirección**.
+    PARÁMETROS:     
+      * dirección:        -Dirección. Describe la dirección del recorrido. 
+    PRECONDICIONES:       -Ninguna.
+    Tipo:                 -Booleano.
+  */
+  return(puedeMover(dirección))
+}
+
+procedure  IrASiguienteCeldaEnUnRecorridoAl_(dirección) {
+  /*
+    PROPÓSITO:        -Posiciona el cabezal en la siguiente celda del recorrido hacia el este.
+    PRECONDICIONES:   -Ninguna.
+    Parámetros:
+        **dirección**:-Dirección.Describe la dirección del recorrido.
+  */
+  if(puedeMover(dirección)) {
+    Mover(dirección)
+  }
+}
+
